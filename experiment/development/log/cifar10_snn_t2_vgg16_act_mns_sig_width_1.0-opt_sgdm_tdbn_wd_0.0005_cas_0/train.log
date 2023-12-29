@@ -1,0 +1,35 @@
+2023-12-24 16:09:22,942 - INFO: Logger created at ./log\cifar10_snn_t2_vgg16_act_mns_sig_width_1.0-opt_sgdm_tdbn_wd_0.0005_cas_0\train.log
+2023-12-24 16:09:22,942 - INFO: The hyperparameter list:
+2023-12-24 16:09:22,942 - INFO:   --seed None
+2023-12-24 16:09:22,942 - INFO:   --arch VGG16
+2023-12-24 16:09:22,942 - INFO:   --dataset CIFAR10
+2023-12-24 16:09:22,942 - INFO:   --data_path your data path
+2023-12-24 16:09:22,942 - INFO:   --ckpt_path ./checkpoint
+2023-12-24 16:09:22,942 - INFO:   --log_path ./log\cifar10_snn_t2_vgg16_act_mns_sig_width_1.0-opt_sgdm_tdbn_wd_0.0005_cas_0
+2023-12-24 16:09:22,942 - INFO:   --auto_aug False
+2023-12-24 16:09:22,942 - INFO:   --cutout False
+2023-12-24 16:09:22,942 - INFO:   --resume None
+2023-12-24 16:09:22,942 - INFO:   --train_batch_size 64
+2023-12-24 16:09:22,942 - INFO:   --val_batch_size 64
+2023-12-24 16:09:22,942 - INFO:   --lr 0.1
+2023-12-24 16:09:22,942 - INFO:   --save_last False
+2023-12-24 16:09:22,942 - INFO:   --bn_type tdbn
+2023-12-24 16:09:22,948 - INFO:   --bias False
+2023-12-24 16:09:22,948 - INFO:   --wd 0.0005
+2023-12-24 16:09:22,948 - INFO:   --num_epoch 300
+2023-12-24 16:09:22,948 - INFO:   --num_workers 0
+2023-12-24 16:09:22,948 - INFO:   --optim SGDM
+2023-12-24 16:09:22,948 - INFO:   --grid_search ./summary.csv
+2023-12-24 16:09:22,948 - INFO:   --act mns_sig
+2023-12-24 16:09:22,948 - INFO:   --alpha 1.0
+2023-12-24 16:09:22,948 - INFO:   --decay None
+2023-12-24 16:09:22,948 - INFO:   --thresh 0.5
+2023-12-24 16:09:22,948 - INFO:   --p None
+2023-12-24 16:09:22,949 - INFO:   --gamma None
+2023-12-24 16:09:22,949 - INFO:   --train_thresh False
+2023-12-24 16:09:22,949 - INFO:   --device cuda:0
+2023-12-24 16:09:22,949 - INFO:   --T 2
+2023-12-24 16:09:22,949 - INFO:   --scheduler COSINE
+2023-12-24 16:09:22,949 - INFO:   --lr_milestone [90, 210, 270, 285]
+2023-12-24 16:09:22,949 - INFO:   --ns_milestone [0, 0.2, 0.4, 0.6, 0.8, 0.95]
+2023-12-24 16:09:22,949 - INFO:   --log_interval 100
