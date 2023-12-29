@@ -1,0 +1,35 @@
+2023-12-24 16:11:30,568 - INFO: Logger created at ./log\cifar10_cut_aug-snn_t2_resnet18_act_mns_sig_width_1.0-opt_sgdm_tdbn_wd_0.0005_p_0.2__gamma_1.0__cas_0\train.log
+2023-12-24 16:11:30,568 - INFO: The hyperparameter list:
+2023-12-24 16:11:30,568 - INFO:   --seed 60
+2023-12-24 16:11:30,568 - INFO:   --arch resnet18
+2023-12-24 16:11:30,568 - INFO:   --dataset CIFAR10
+2023-12-24 16:11:30,568 - INFO:   --data_path data/CIFAR10
+2023-12-24 16:11:30,568 - INFO:   --ckpt_path ./checkpoint
+2023-12-24 16:11:30,568 - INFO:   --log_path ./log\cifar10_cut_aug-snn_t2_resnet18_act_mns_sig_width_1.0-opt_sgdm_tdbn_wd_0.0005_p_0.2__gamma_1.0__cas_0
+2023-12-24 16:11:30,568 - INFO:   --auto_aug True
+2023-12-24 16:11:30,568 - INFO:   --cutout True
+2023-12-24 16:11:30,568 - INFO:   --resume None
+2023-12-24 16:11:30,569 - INFO:   --train_batch_size 64
+2023-12-24 16:11:30,569 - INFO:   --val_batch_size 64
+2023-12-24 16:11:30,569 - INFO:   --lr 0.1
+2023-12-24 16:11:30,569 - INFO:   --save_last False
+2023-12-24 16:11:30,569 - INFO:   --bn_type tdbn
+2023-12-24 16:11:30,569 - INFO:   --bias False
+2023-12-24 16:11:30,569 - INFO:   --wd 0.0005
+2023-12-24 16:11:30,569 - INFO:   --num_epoch 300
+2023-12-24 16:11:30,569 - INFO:   --num_workers 0
+2023-12-24 16:11:30,569 - INFO:   --optim SGDM
+2023-12-24 16:11:30,569 - INFO:   --grid_search ./summary.csv
+2023-12-24 16:11:30,569 - INFO:   --act mns_sig
+2023-12-24 16:11:30,569 - INFO:   --alpha 1.0
+2023-12-24 16:11:30,569 - INFO:   --decay 0.5
+2023-12-24 16:11:30,569 - INFO:   --thresh 1.0
+2023-12-24 16:11:30,569 - INFO:   --p 0.2
+2023-12-24 16:11:30,569 - INFO:   --gamma 1.0
+2023-12-24 16:11:30,569 - INFO:   --train_thresh False
+2023-12-24 16:11:30,569 - INFO:   --device cuda:0
+2023-12-24 16:11:30,569 - INFO:   --T 2
+2023-12-24 16:11:30,569 - INFO:   --scheduler COSINE
+2023-12-24 16:11:30,569 - INFO:   --lr_milestone [90, 210, 270, 285]
+2023-12-24 16:11:30,569 - INFO:   --ns_milestone [0, 0.2, 0.4, 0.6, 0.8, 0.95]
+2023-12-24 16:11:30,569 - INFO:   --log_interval 100
