@@ -40,12 +40,19 @@ for folder in os.listdir(base_path):
                     nplist.append(torch.from_numpy(converted_array))
                 # 将整个nplist转换为tensor格式
                 origin_ts = torch.stack(nplist, dim=0)
+                # print(origin_ts.shape)
                 # 将提取出来的origin_ts赋值给 data序列
                 data_list.append(origin_ts)
-                print(f"文件 {npz_files[file_index]} 已处理。")
+                # print(f"文件 {npz_files[file_index]} 已处理。")
 
         # 合并为一个Tensor
-        combined_tensor = torch.stack(nplist, dim=0)
+        # 找出第二维上的最小值
+        min_size = min(tensor.size(1) for tensor in data_list)
+        # 裁剪所有Tensor到最小
+        cropped_data_list = [tensor[:, :min_size] for tensor in data_list]
+        # 合并
+        combined_tensor = torch.stack(cropped_data_list, dim=0)
+        print(combined_tensor.shape)
         # 保存Tensor
         output_filename = os.path.join(output_path, f'{folder}_{dataset_type}.pt')
         torch.save({'data': combined_tensor, 'targets': target}, os.path.join(output_path, f'{folder}_{dataset_type}.pt'))
