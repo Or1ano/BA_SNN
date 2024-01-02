@@ -12,10 +12,11 @@ os.makedirs(train_path, exist_ok=True)
 os.makedirs(test_path, exist_ok=True)
 print("输出目录已创建或已存在。")
 
+target = 0
+
 # 遍历每个子文件夹
 for folder in os.listdir(base_path):
     folder_path = os.path.join(base_path, folder)
-    target = str(folder)
     print(f"正在处理文件夹: {folder}")
 
     # 读取所有npz文件并排序
@@ -54,6 +55,7 @@ for folder in os.listdir(base_path):
         combined_tensor = torch.stack(cropped_data_list, dim=0)
         print(combined_tensor.shape)
         # 保存Tensor
-        output_filename = os.path.join(output_path, f'{folder}_{dataset_type}.pt')
-        torch.save({'data': combined_tensor, 'targets': target}, os.path.join(output_path, f'{folder}_{dataset_type}.pt'))
+        output_filename = os.path.join(output_path, f'{target}_{dataset_type}.pt')
+        torch.save({'data': combined_tensor, 'targets': target}, os.path.join(output_path, f'{target}_{dataset_type}.pt'))
         print(f"{dataset_type} 数据已保存到 {output_filename}")
+    target += 1
