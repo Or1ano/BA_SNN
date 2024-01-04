@@ -7,55 +7,56 @@ import numpy as np
 import spikingjelly.datasets
 import spikingjelly.datasets.cifar10_dvs as cifar10_dvs
 
+npz_path = r'F:\BA_SNN\archs\cifar10_dvs\frames_number_10_split_by_number\airplane\cifar10_airplane_0.npz'
+pt_path = r'F:\BA_SNN\experiment\data\CIFAR10DVS\events_pt\train\0.pt'
 root_dir = r'F:\BA_SNN\archs\cifar10_dvs'
 dtype = torch.float
 cifar10_root = r'F:\BA_SNN\experiment\data\CIFAR10'
 normalize = transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010))
 train_transform = []
 ts_transform = []
+frame_ts_transformed_list = []
 train_transform.append(transforms.ToTensor())
 # ts_transform.append(transforms.ToTensor())
 
 # 使用origin_set提取cifar10_dvs数据集
 origin_set = cifar10_dvs.CIFAR10DVS(root_dir)
-# 划分为train和test
-# train_set, test_set = spikingjelly.datasets.split_to_train_test_set(train_ratio=0.8, origin_dataset=origin_set, num_classes=10)
-#
-# print(len(train_set))
-# print(len(test_set))
+frame_set = cifar10_dvs.CIFAR10DVS(root=root_dir, data_type='frame', frames_number=10, split_by='number')
 
-# print(origin_set[0][0])
-nplist = []
-for i in origin_set[0][0]:
-    # 转换为兼容编码顺序
-    native_array = origin_set[0][0][i].astype(origin_set[0][0][i].dtype.newbyteorder('='))
-    # 转换为float32编码
-    converted_array = native_array.astype(np.float32)
-    # 将numpy array 转换成 tensor类型
-    nplist.append(torch.from_numpy(converted_array))
-# 讲整个nplist转换为tensor格式
-origin_ts = torch.stack(nplist, dim=0)
+print(len(origin_set))
+print(origin_set[0][0])
 
-# 应用文章提到的transform序列
+print(len(frame_set))
+print(frame_set[0][0].shape)
+# print(frame_set[0][0])
+
+frame_npnd = frame_set[0][0]
+frame_ts = torch.from_numpy(frame_npnd)
+print('转换前： ')
+print(frame_ts.shape)
+
+# 应用data提到的transform序列
 ts_transform.append(transforms.ToPILImage())
 ts_transform.append(transforms.Resize(size=(48, 48)))
 ts_transform.append(transforms.ToTensor())
 ts_transform = transforms.Compose(ts_transform)
-ts_transformed = (ts_transform(origin_ts))
 
+for t in range(frame_ts.size(0)):
+    # print(t)
+    frame_ts_transformed_list.append(ts_transform(frame_ts[t, ...]))
+print('转换后： ')
+print(frame_ts_transformed_list[0].shape)
+frame_ts_transformed = torch.stack(frame_ts_transformed_list, dim=0)
+print(frame_ts_transformed.shape)
 
+data = np.load(npz_path)
+print(f"{npz_path}中含有的数据如下：")
+for i in data['frames']:
+    print(i.shape)
 
-# train_transform.append(normalize)
-# train_transform = transforms.Compose(train_transform)
-# val_transform = transforms.Compose([transforms.ToTensor(),
-#                                         normalize
-#                                         ])
-# train_data = datasets.CIFAR10(root=cifar10_root, train=True, download=True,
-#                                       transform=train_transform)
-# val_data = datasets.CIFAR10(root=cifar10_root, train=False, download=True,
-#                                     transform=val_transform)
-# print(train_data[0][0].unsqueeze(0).to(dtype).shape)
-# print(val_data[0][0].unsqueeze(0).to(dtype).shape)
-
-print(origin_ts.shape)
-print(ts_transformed.shape)
+frame_ts = torch.load(pt_path)
+print(frame_ts)
+f_data = frame_ts['data']
+f_target = torch.tensor(frame_ts['target'])
+print(f_data.shape)
+print(f_target)
